@@ -1,0 +1,20 @@
+// seller 4869f7a5dfa277a7dca6462dcf3b52b2/seller.page.aml
+
+Dashboard ecom_perf_4869f7a5dfa277a7dca6462dcf3b52b2 {
+  title: 'Ecommerce Performance of Seller 4869f7a5dfa277a7dca6462dcf3b52b2'
+  description: ''''''
+  view: sellerCanvasLayout()
+  block txt_title: sellerTxtTitle('4869f7a5dfa277a7dca6462dcf3b52b2')
+  block img_holistics_logo: TextBlock {
+    content: @md
+    <center>
+      <img src="https://docs.holistics.io/img/logo.png" 
+      width="400" height="400">
+    </center>
+  ;;
+  }
+  block viz_rev_over_month: sellerVizRevOverMonth(mappingSellerDataset4869f7a5dfa277a7dca6462dcf3b52b2)
+  block viz_by_product: sellerVizByProduct(mappingSellerDataset4869f7a5dfa277a7dca6462dcf3b52b2)
+  block filter_product_id: sellerFilterProductId(mappingSellerDataset4869f7a5dfa277a7dca6462dcf3b52b2)
+
+}
