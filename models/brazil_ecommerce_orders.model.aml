@@ -1,0 +1,34 @@
+// models/brazil_ecommerce_orders.model.aml
+
+Model brazil_ecommerce_orders {
+  type: 'table'
+  label: 'Orders'
+  description: ''
+  data_source_name: 'demodb'
+  dimension order_id {
+    label: 'Order Id'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.order_id }};;
+  }
+  dimension customer_id {
+    label: 'Customer Id'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.customer_id }};;
+  }
+  dimension order_status {
+    label: 'Order Status'
+    type: 'text'
+    hidden: false
+    definition: @sql {{ #SOURCE.order_status }};;
+  }
+  dimension order_purchase_timestamp {
+    label: 'Order Purchase Timestamp'
+    type: 'datetime'
+    definition: @sql {{ #SOURCE.order_purchase_timestamp }};;
+  }
+
+  owner: 'demo4.user@holistics.io'
+  table_name: '"brazil_ecommerce"."orders"'
+}
