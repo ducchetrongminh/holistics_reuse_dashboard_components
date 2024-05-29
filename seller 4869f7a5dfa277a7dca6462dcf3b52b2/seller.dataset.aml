@@ -1,0 +1,42 @@
+// seller 4869f7a5dfa277a7dca6462dcf3b52b2/seller.dataset.aml
+
+Model order_items_4869f7a5dfa277a7dca6462dcf3b52b2 = brazil_ecommerce_order_items.extend({
+  type: 'query',
+  models: [brazil_ecommerce_order_items],
+  query: @sql 
+    SELECT * FROM {{ #brazil_ecommerce_order_items }}
+    WHERE seller_id = '4869f7a5dfa277a7dca6462dcf3b52b2'
+  ;;
+})
+
+Model orders_4869f7a5dfa277a7dca6462dcf3b52b2 = brazil_ecommerce_orders.extend({
+  type: 'query',
+  models: [brazil_ecommerce_orders, order_items_4869f7a5dfa277a7dca6462dcf3b52b2],
+  query: @sql 
+    SELECT o.*
+    FROM {{ #brazil_ecommerce_orders AS o }}
+    JOIN {{ #order_items_4869f7a5dfa277a7dca6462dcf3b52b2 as oi }} USING (order_id)
+  ;;
+})
+
+Dataset seller_4869f7a5dfa277a7dca6462dcf3b52b2 {
+  label: 'Seller 4869f7a5dfa277a7dca6462dcf3b52b2'
+  data_source_name: 'demodb'
+  models: [
+    orders_4869f7a5dfa277a7dca6462dcf3b52b2,
+    order_items_4869f7a5dfa277a7dca6462dcf3b52b2
+  ]
+  relationships: [
+    relationship(order_items_4869f7a5dfa277a7dca6462dcf3b52b2.order_id > orders_4869f7a5dfa277a7dca6462dcf3b52b2.order_id, true)
+  ]
+  owner: 'demo4.user@holistics.io'
+}
+
+const mappingSellerDataset4869f7a5dfa277a7dca6462dcf3b52b2 = {
+  dataset: seller_4869f7a5dfa277a7dca6462dcf3b52b2,
+  orders: 'orders_4869f7a5dfa277a7dca6462dcf3b52b2',
+  order_items: 'order_items_4869f7a5dfa277a7dca6462dcf3b52b2'
+}
+
+seller_4869f7a5dfa277a7dca6462dcf3b52b2
+// The last line is to ensure this file returns a dataset
