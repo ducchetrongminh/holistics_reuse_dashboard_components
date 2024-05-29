@@ -3,28 +3,8 @@
 Dashboard ecom_perf_SELLER_ID {
   title: 'Ecommerce Performance of Seller SELLER_ID'
   description: ''''''
-  view: CanvasLayout {
-    label: 'View 1'
-    height: 800
-    block txt_title {
-      position: pos(150, 20, 550, 70)
-    }
-    block img_holistics_logo {
-      position: pos(70, 20, 70, 90)
-    }
-    block viz_rev_over_month {
-      position: pos(70, 110, 970, 330)
-    }
-    block viz_by_product {
-      position: pos(70, 470, 970, 310)
-    }
-    block filter_product_id {
-      position: pos(800, 20, 240, 70)
-    }
-  }
-  block txt_title: TextBlock {
-    content: @md ## Ecommerce Performance of SELLER_ID;;
-  }
+  view: sellerCanvasLayout()
+  block txt_title: sellerTxtTitle('SELLER_ID')
   block img_holistics_logo: TextBlock {
     content: @md
     <center>
@@ -33,72 +13,8 @@ Dashboard ecom_perf_SELLER_ID {
     </center>
   ;;
   }
-  block viz_rev_over_month: VizBlock {
-    label: 'Revenue over Month'
-    viz: ColumnChart {
-      dataset: seller_SELLER_ID
-      x_axis: VizFieldFull {
-        ref: ref('orders_SELLER_ID', 'order_purchase_timestamp')
-        transformation: 'datetrunc month'
-        format {
-          type: 'date'
-          pattern: 'LLL yyyy'
-        }
-      }
-      y_axis {
-        series {
-          field {
-            ref: ref('order_items_SELLER_ID', 'revenue')
-            format {
-              type: 'number'
-              pattern: 'inherited'
-            }
-          }
-        }
-      }
-    }
-  }
-  block viz_by_product: VizBlock {
-    label: 'By Product'
-    viz: DataTable {
-      dataset: seller_SELLER_ID
-      fields: [
-        VizFieldFull {
-          ref: ref('order_items_SELLER_ID', 'product_id')
-          format {
-            type: 'text'
-          }
-        },
-        VizFieldFull {
-          ref: ref('order_items_SELLER_ID', 'revenue')
-          format {
-            type: 'number'
-            pattern: 'inherited'
-          }
-        }
-      ]
-      settings {
-        show_row_number: true
-        sorts: [
-          SortSetting {
-            field_index: 1
-            direction: 'desc'
-          }
-        ]
-      }
-    }
-  }
-  block filter_product_id: FilterBlock {
-    label: 'Product ID'
-    type: 'field'
-    source: FieldFilterSource {
-      dataset: seller_SELLER_ID
-      field: ref('order_items_SELLER_ID', 'product_id')
-    }
-    default {
-      operator: 'is'
-      value: []
-    }
-  }
+  block viz_rev_over_month: sellerVizRevOverMonth()
+  block viz_by_product: sellerVizByProduct()
+  block filter_product_id: sellerFilterProductId()
 
 }
