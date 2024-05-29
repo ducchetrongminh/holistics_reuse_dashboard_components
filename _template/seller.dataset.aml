@@ -5,7 +5,7 @@ Model order_items_SELLER_ID = brazil_ecommerce_order_items.extend({
   models: [brazil_ecommerce_order_items],
   query: @sql 
     SELECT * FROM {{ #brazil_ecommerce_order_items }}
-    WHERE seller_id = 'SELLER_ID'
+    WHERE seller_id = '4a3ca9315b744ce9f8e9374361493884'
   ;;
 })
 
