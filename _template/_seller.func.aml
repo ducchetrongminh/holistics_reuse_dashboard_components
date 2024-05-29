@@ -5,7 +5,7 @@ Func sellerCanvasLayout() {
     label: 'View 1'
     height: 800
     block txt_title {
-      position: pos(150, 20, 550, 70)
+      position: pos(190, 20, 550, 70)
     }
     block img_holistics_logo {
       position: pos(70, 20, 70, 90)
