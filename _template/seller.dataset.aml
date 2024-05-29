@@ -1,0 +1,20 @@
+// _template/seller.dataset.aml
+
+Model order_items_SELLER_ID = brazil_ecommerce_order_items.extend({
+  type: 'query',
+  models: [brazil_ecommerce_order_items],
+  query: @sql 
+    SELECT * FROM {{ #brazil_ecommerce_order_items }}
+    WHERE seller_id = 'SELLER_ID'
+  ;;
+})
+
+Model orders_SELLER_ID = brazil_ecommerce_orders.extend({
+  type: 'query',
+  models: [brazil_ecommerce_orders, order_items_SELLER_ID],
+  query: @sql 
+    SELECT o.*
+    FROM {{ #brazil_ecommerce_orders AS o }}
+    JOIN {{ #order_items_SELLER_ID as oi }} USING (order_id)
+  ;;
+})
