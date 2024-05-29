@@ -28,13 +28,13 @@ Func sellerTxtTitle(seller_id: String) {
   }
 }
 
-Func sellerVizRevOverMonth() {
+Func sellerVizRevOverMonth(mapping) {
   VizBlock {
     label: 'Revenue over Month'
     viz: ColumnChart {
-      dataset: seller_SELLER_ID
+      dataset: mapping.dataset
       x_axis: VizFieldFull {
-        ref: ref('orders_SELLER_ID', 'order_purchase_timestamp')
+        ref: ref(mapping.orders, 'order_purchase_timestamp')
         transformation: 'datetrunc month'
         format {
           type: 'date'
@@ -44,7 +44,7 @@ Func sellerVizRevOverMonth() {
       y_axis {
         series {
           field {
-            ref: ref('order_items_SELLER_ID', 'revenue')
+            ref: ref(mapping.order_items, 'revenue')
             format {
               type: 'number'
               pattern: 'inherited'
@@ -56,20 +56,20 @@ Func sellerVizRevOverMonth() {
   }
 }
 
-Func sellerVizByProduct() {
+Func sellerVizByProduct(mapping) {
   VizBlock {
     label: 'By Product'
     viz: DataTable {
-      dataset: seller_SELLER_ID
+      dataset: mapping.dataset
       fields: [
         VizFieldFull {
-          ref: ref('order_items_SELLER_ID', 'product_id')
+          ref: ref(mapping.order_items, 'product_id')
           format {
             type: 'text'
           }
         },
         VizFieldFull {
-          ref: ref('order_items_SELLER_ID', 'revenue')
+          ref: ref(mapping.order_items, 'revenue')
           format {
             type: 'number'
             pattern: 'inherited'
@@ -89,13 +89,13 @@ Func sellerVizByProduct() {
   }
 }
 
-Func sellerFilterProductId() {
+Func sellerFilterProductId(mapping) {
   FilterBlock {
     label: 'Product ID'
     type: 'field'
     source: FieldFilterSource {
-      dataset: seller_SELLER_ID
-      field: ref('order_items_SELLER_ID', 'product_id')
+      dataset: mapping.dataset
+      field: ref(mapping.order_items, 'product_id')
     }
     default {
       operator: 'is'
