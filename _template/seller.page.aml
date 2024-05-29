@@ -13,8 +13,8 @@ Dashboard ecom_perf_SELLER_ID {
     </center>
   ;;
   }
-  block viz_rev_over_month: sellerVizRevOverMonth()
-  block viz_by_product: sellerVizByProduct()
-  block filter_product_id: sellerFilterProductId()
+  block viz_rev_over_month: sellerVizRevOverMonth(mappingSellerDatasetSELLER_ID)
+  block viz_by_product: sellerVizByProduct(mappingSellerDatasetSELLER_ID)
+  block filter_product_id: sellerFilterProductId(mappingSellerDatasetSELLER_ID)
 
 }
