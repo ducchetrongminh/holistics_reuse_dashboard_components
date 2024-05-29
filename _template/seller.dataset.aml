@@ -18,3 +18,16 @@ Model orders_SELLER_ID = brazil_ecommerce_orders.extend({
     JOIN {{ #order_items_SELLER_ID as oi }} USING (order_id)
   ;;
 })
+
+Dataset seller_SELLER_ID {
+  label: 'Seller SELLER_ID'
+  data_source_name: 'demodb'
+  models: [
+    orders_SELLER_ID,
+    order_items_SELLER_ID
+  ]
+  relationships: [
+    relationship(order_items_SELLER_ID.order_id > orders_SELLER_ID.order_id, true)
+  ]
+  owner: 'demo4.user@holistics.io'
+}
