@@ -31,3 +31,12 @@ Dataset seller_SELLER_ID {
   ]
   owner: 'demo4.user@holistics.io'
 }
+
+const mappingSellerDatasetSELLER_ID = {
+  dataset: seller_SELLER_ID,
+  orders: 'orders_SELLER_ID',
+  order_items: 'order_items_SELLER_ID'
+}
+
+seller_SELLER_ID
+// The last line is to ensure this file returns a dataset
